@@ -1,0 +1,26 @@
+# -*- coding: UTF-8 -*-
+'''
+Created on 2016-3-22
+
+@author: CaoPeng
+'''
+from urllib import request
+from pip._vendor.requests.packages import chardet
+
+
+class HtmlDownlonder(object):
+
+    
+    def download(self,url):
+        if url is None:
+            return None
+
+        response = request.urlopen(url)
+
+        if response.getcode() != 200:
+            return None
+        
+        html_read = response.read()
+        mychar=chardet.detect(html_read)
+        print(mychar)
+        return html_read
